@@ -1,17 +1,36 @@
-
 import 'package:flutter/material.dart';
+import 'home_page.dart';
+// import 'pages/breathing_page.dart';
+// import 'pages/meditation_page.dart';
+// import 'pages/mood_page.dart';
+// import 'pages/journal_page.dart';
+// import 'pages/affirmations_page.dart';
 
-void main() => runApp(const App());
+void main() => runApp(const MindfulnessApp());
 
-class App extends StatelessWidget {
-  const App({super.key});
+class MindfulnessApp extends StatelessWidget {
+  const MindfulnessApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    final seed = const Color(0xFF6370D9); //tbd if this is for sure
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(child: Text('')),
+      title: 'Mindfulness App',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: seed, brightness: Brightness.dark),
+        useMaterial3: true,
+        fontFamily: 'Sans',
       ),
+      routes: {
+        //routes blank till update shooting for later today
+        '/': (_) => const HomePage(),
+        '/breathing': (_) => const BreathingPage(),
+        '/meditation': (_) => const MeditationPage(),
+        '/mood': (_) => const MoodPage(),
+        '/journal': (_) => const JournalPage(),
+        '/affirmations': (_) => const AffirmationsPage(),
+      },
     );
   }
 }
