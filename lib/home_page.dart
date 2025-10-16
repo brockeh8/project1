@@ -27,9 +27,9 @@ class _HomePageState extends State<HomePage> {
     Future<void> _loadObjectives() async {
         final p = await Shared_preferences.getInstance();
         setState(() {
-            _breathing = p.getBool(breathingkey) ?? false //comp??
-            _meditation = p.getBool(meditationkey) ?? false
-            _breathing = p.getBool(journalkey) ?? false
+            _breathing = p.getBool(breathingkey) ?? false; //comp??
+            _meditation = p.getBool(meditationkey) ?? false;
+            _breathing = p.getBool(journalkey) ?? false;
         });
     }
     
