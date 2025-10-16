@@ -22,15 +22,16 @@ class MindfulnessApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Sans',
       ),
-      routes: {
-        //routes blank till update shooting for later today
-        '/': (_) => const HomePage(),
-        '/breathing': (_) => const BreathingPage(),
-        '/meditation': (_) => const MeditationPage(),
-        '/mood': (_) => const MoodPage(),
-        '/journal': (_) => const JournalPage(),
-        '/affirmations': (_) => const AffirmationsPage(),
-      },
+      home :const HomePage(),
+      // routes: {
+      //   //routes blank till update shooting for later today
+      //   '/': (_) => const HomePage(),
+      //   '/breathing': (_) => const BreathingPage(),
+      //   '/meditation': (_) => const MeditationPage(),
+      //   '/mood': (_) => const MoodPage(),
+      //   '/journal': (_) => const JournalPage(),
+      //   '/affirmations': (_) => const AffirmationsPage(),
+      // },
     );
   }
 }
