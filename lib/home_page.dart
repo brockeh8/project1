@@ -42,6 +42,17 @@ class _HomePageState extends State<HomePage> {
     Widget _leftMenu(BuildContext context) {
         Widget menuButton(String label, String route) {
             //cont with padding child buttons
+            return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: ElevatedButton(
+                onPressed: () => Navigator.pushNamed(context, route),
+                style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 18),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+                ),
+                child: Text(label, style: const TextStyle(fontWeight: FontWeight.w700)),
+                ),
+            );
         }
     }
 
