@@ -9,16 +9,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
     // new checklist keys and obj
-    static const String breathingkey = 'obj_breathing_fin';
-    static const String meditationkey = 'obj_meditation_fin';
-    static const String journalkey = 'obj_journal_fin';
+    static const String breathingKey = 'obj_breathing_fin';
+    static const String meditationKey = 'obj_meditation_fin';
+    static const String journalKey = 'obj_journal_fin';
 
     bool _breathing = false;
     bool _meditation = false;
     bool _journal = false;
 
     //init
-    @override initState() {
+    @override 
+    void initState() {
         super.initState();
         _loadObjectives();
     }
@@ -27,9 +28,9 @@ class _HomePageState extends State<HomePage> {
     Future<void> _loadObjectives() async {
         final p = await SharedPreferences.getInstance();
         setState(() {
-            _breathing = p.getBool(breathingkey) ?? false; //comp??
-            _meditation = p.getBool(meditationkey) ?? false;
-            _journal = p.getBool(journalkey) ?? false;
+            _breathing = p.getBool(breathingKey) ?? false; //comp??
+            _meditation = p.getBool(meditationKey) ?? false;
+            _journal = p.getBool(journalKey) ?? false;
         });
     }
     
@@ -70,12 +71,7 @@ class _HomePageState extends State<HomePage> {
                             menuButton('Meditation', '/meditation'),
                             menuButton('Mood Slider', '/mood'),
                             menuButton('Journal', '/journal'),
-                            const SizedBox(height: 8),
-                            TextButton.icon(
-                                onPressed: () => Navigator.pushNamed(context, '/affirmations'),
-                                icon: const Icon(Icons.sunny_snowing),
-                                label: const Text('Daily Affirmations'),
-                            ),
+                            menuButton('Daily Affirmations', '/affirmations'),
                         ],
                     ),
                 ),
@@ -100,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Text('Daily Objectives', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
                                 ),
                             ),
+                            //random examples tbd
                             const Divider(),
                             CheckboxListTile(
                                 value: _breathing,
