@@ -9,7 +9,7 @@ import 'home_page.dart';
 void main() => runApp(const MindfulnessApp());
 
 class MindfulnessApp extends StatelessWidget {
-  const MindfulnessApp({super.key});
+const MindfulnessApp({super.key});
 
   @override
   Widget build(BuildContext context) {
