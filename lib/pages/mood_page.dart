@@ -46,4 +46,54 @@ class _MoodPageState extends State<MoodPage> {
         await _save();
         setState(() {});
     }
+
+    //scaffold containing the slider, test, and storage.
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(title: const Text('Mood Tracker')),
+            body: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                    children: [
+                        const Text('How are you feeling today?'),
+                        Slider(
+                            value: slider,
+                            min: 0, max: 2, divisions: 2,
+                            label: moods[slider.round()],
+                            onChanged: (v) => setState(() => slider = v),
+                        ),
+                        ElevatedButton.icon(
+                            onPressed: _logToday,
+                            icon: const Icon(Icons.save),
+                            label: const Text('Log Today'),
+                        ),
+                        const SizedBox(height: 12),
+                        const Divider(),
+                        const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text('Recent Moods', style: TextStyle(fontWeight: FontWeight.bold)),
+                        ),
+                        Expanded(
+                            child: logs.isEmpty
+                                ? const Center(child: Text('No logs yet.'))
+                                : ListView.builder(
+                                    itemCount: logs.length,
+                                    itemBuilder: (_, i) {
+                                        final e = logs[i];
+                                        return ListTile(
+                                            leading: const Icon(Icons.circle),
+                                            title: Text(e['mood'] ?? ''),
+                                            subtitle: Text(e['date'] ?? ''),
+                                        );
+                                    },
+                                ),
+                        ),
+                    ],
+                ),
+            ),
+        );
+    }
 }
+    
+
