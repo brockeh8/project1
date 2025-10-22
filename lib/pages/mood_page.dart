@@ -31,10 +31,19 @@ class _MoodPageState extends State<MoodPage> {
             setState(() => logs = list);
         }
     }
-    //log -- specific date??
+    //save helper
+    Future<void> _save() async {
+        final p = await SharedPreferences.getInstance();
+        await p.setString(moodLogsKey, jsonEncode(logs));
+    }
 
-    //final scaffold 
+    //log
+    Future<void> _logToday() async {
+        final today = DateTime.now().toIso8601String().substring(0, 10);
+        final mood = moods[slider.round()];
+        logs.removeWhere((e) => e['date'] == today);
+        logs.insert(0, {'date': today, 'mood': mood});
+        await _save();
+        setState(() {});
+    }
 }
-
-
-
