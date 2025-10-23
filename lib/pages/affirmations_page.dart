@@ -6,3 +6,7 @@ class AffirmationsPage extends StatefulWidget {
   @override
   State<AffirmationsPage> createState() => _AffirmationsPageState();
 }
+
+class _AffirmationsPageState extends State<AffirmationsPage> {
+  static const _kAffirmIdx = 'affirmation_index';
+  static const _kAffirmDate = 'affirmation_date';
