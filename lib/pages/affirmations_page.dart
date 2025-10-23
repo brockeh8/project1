@@ -27,7 +27,7 @@ class _AffirmationsPageState extends State<AffirmationsPage> {
     super.initState();
     _loadOrRotate();
   }
-  
+
   Future<void> _loadOrRotate() async {
     final p = await SharedPreferences.getInstance();
     final today = DateTime.now().toIso8601String().substring(0, 10);
@@ -42,3 +42,25 @@ class _AffirmationsPageState extends State<AffirmationsPage> {
     }
     setState(() => _index = idx);
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Daily Affirmation')),
+      body: Center(
+        child: Card(
+          elevation: 8,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Text(
+              _quotes[_index],
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
