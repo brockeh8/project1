@@ -27,3 +27,18 @@ class _AffirmationsPageState extends State<AffirmationsPage> {
     super.initState();
     _loadOrRotate();
   }
+  
+  Future<void> _loadOrRotate() async {
+    final p = await SharedPreferences.getInstance();
+    final today = DateTime.now().toIso8601String().substring(0, 10);
+    final savedDate = p.getString(_kAffirmDate);
+    int idx = p.getInt(_kAffirmIdx) ?? 0;
+
+    // rotate once per day
+    if (savedDate != today) {
+      idx = (idx + 1) % _quotes.length;
+      await p.setInt(_kAffirmIdx, idx);
+      await p.setString(_kAffirmDate, today);
+    }
+    setState(() => _index = idx);
+  }
