@@ -50,10 +50,41 @@ class _BreathingPageState extends State<BreathingPage> {
         _timer?.cancel();
         super.dispose();
     }
-
-//breathing
-
-//animation pro
-
-//final widget creation + text
+    
+    //scaffold w widget and text
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(title: const Text('Breathing Exercises')),
+            body: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                        AnimatedContainer(
+                            duration: const Duration(milliseconds: 800),
+                            curve: Curves.easeInOut,
+                            width: _size,
+                            height: _size,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).colorScheme.primary.withOpacity(0.35),
+                            ),
+                            child: Center(child: Text(_running ? _label : 'Ready', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700))),
+                        ),
+                        const SizedBox(height: 24),
+                        Wrap(
+                            spacing: 12,
+                            children: [
+                                ElevatedButton.icon(onPressed: _running ? null : _start, icon: const Icon(Icons.play_arrow), label: const Text('Start')),
+                                ElevatedButton.icon(onPressed: _running ? _stop : null, icon: const Icon(Icons.stop), label: const Text('Stop')),
+                            ],
+                        ),
+                        const SizedBox(height: 12),
+                        const Text('Cycle: 4s inhale - 4s hold - 6s exhale'),
+                    ],
+                ),
+            ),
+        );
+    }
+}
 
