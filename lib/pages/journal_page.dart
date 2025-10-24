@@ -32,3 +32,21 @@ class _JournalPageState extends State<JournalPage> {
     final p = await SharedPreferences.getInstance();
     await p.setString(_kJournal, jsonEncode(_entries));
   }
+  
+  Future<void> _add() async {
+    final text = _controller.text.trim();
+    if (text.isEmpty) return;
+    _entries.insert(0, {
+      'date': DateTime.now().toIso8601String().substring(0, 16).replaceFirst('T', ' '),
+      'text': text,
+    });
+    _controller.clear();
+    await _saveAll();
+    setState(() {});
+  }
+
+  Future<void> _delete(int i) async {
+    _entries.removeAt(i);
+    await _saveAll();
+    setState(() {});
+  }
