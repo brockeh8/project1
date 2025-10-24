@@ -32,7 +32,7 @@ class _JournalPageState extends State<JournalPage> {
     final p = await SharedPreferences.getInstance();
     await p.setString(_kJournal, jsonEncode(_entries));
   }
-  
+
   Future<void> _add() async {
     final text = _controller.text.trim();
     if (text.isEmpty) return;
@@ -50,3 +50,59 @@ class _JournalPageState extends State<JournalPage> {
     await _saveAll();
     setState(() {});
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Journal')),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              controller: _controller,
+              minLines: 2,
+              maxLines: 6,
+              decoration: InputDecoration(
+                hintText: 'Write your thoughts...',
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerRight,
+              child: FilledButton.icon(onPressed: _add, icon: const Icon(Icons.add), label: const Text('Add Entry')),
+            ),
+            const Divider(),
+            Expanded(
+              child: _entries.isEmpty
+                  ? const Center(child: Text('No entries yet.'))
+                  : ListView.separated(
+                      itemCount: _entries.length,
+                      separatorBuilder: (_, __) => const Divider(height: 0),
+                      itemBuilder: (_, i) {
+                        final e = _entries[i];
+                        return Dismissible(
+                          key: ValueKey(e['date']),
+                          background: Container(color: Colors.redAccent),
+                          onDismissed: (_) => _delete(i),
+                          child: ListTile(
+                            title: Text(e['text'] ?? ''),
+                            subtitle: Text(e['date'] ?? ''),
+                          ),
+                        );
+                      },
+                    ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
