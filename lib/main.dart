@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-// import 'pages/breathing_page.dart';
-// import 'pages/meditation_page.dart';
+import 'pages/breathing_page.dart';
+import 'pages/meditation_page.dart';
 import 'pages/mood_page.dart';
-// import 'pages/journal_page.dart';
-// import 'pages/affirmations_page.dart';
+import 'pages/journal_page.dart';
+import 'pages/affirmations_page.dart';
 
 void main() => runApp(const MindfulnessApp());
 
@@ -24,13 +24,13 @@ const MindfulnessApp({super.key});
       ),
       home :const HomePage(),
       routes: {
-      //   //routes blank till update shooting for later today
-      //   '/': (_) => const HomePage(),
-      //   '/breathing': (_) => const BreathingPage(),
-      //   '/meditation': (_) => const MeditationPage(),
+        //routes blank till update shooting for later today
+        '/': (_) => const HomePage(),
+        '/breathing': (_) => const BreathingPage(),
+        '/meditation': (_) => const MeditationPage(),
         '/mood': (_) => const MoodPage(),
-      //   '/journal': (_) => const JournalPage(),
-      //   '/affirmations': (_) => const AffirmationsPage(),
+        '/journal': (_) => const JournalPage(),
+        '/affirmations': (_) => const AffirmationsPage(),
       },
     );
   }
