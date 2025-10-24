@@ -4,7 +4,7 @@ import 'home_page.dart';
 // import 'pages/meditation_page.dart';
 import 'pages/mood_page.dart';
 // import 'pages/journal_page.dart';
-// import 'pages/affirmations_page.dart';
+import 'pages/affirmations_page.dart';
 
 void main() => runApp(const MindfulnessApp());
 
@@ -30,7 +30,7 @@ const MindfulnessApp({super.key});
       //   '/meditation': (_) => const MeditationPage(),
         '/mood': (_) => const MoodPage(),
       //   '/journal': (_) => const JournalPage(),
-      //   '/affirmations': (_) => const AffirmationsPage(),
+        '/affirmations': (_) => const AffirmationsPage(),
       },
     );
   }
