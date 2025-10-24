@@ -18,3 +18,17 @@ class _JournalPageState extends State<JournalPage> {
     super.initState();
     _load();
   }
+
+  Future<void> _load() async {
+    final p = await SharedPreferences.getInstance();
+    final raw = p.getString(_kJournal);
+    if (raw != null) {
+      final list = (jsonDecode(raw) as List).cast<Map>().map((e) => e.map((k, v) => MapEntry(k.toString(), v.toString()))).toList();
+      setState(() => _entries = list);
+    }
+  }
+
+  Future<void> _saveAll() async {
+    final p = await SharedPreferences.getInstance();
+    await p.setString(_kJournal, jsonEncode(_entries));
+  }
