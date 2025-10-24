@@ -50,7 +50,7 @@ class _BreathingPageState extends State<BreathingPage> {
         _timer?.cancel();
         super.dispose();
     }
-    
+    String get _label => ['Inhale', 'Hold', 'Exhale'][_phase];
     //scaffold w widget and text
     @override
     Widget build(BuildContext context) {
