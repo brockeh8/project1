@@ -17,13 +17,40 @@ class _BreathingPageState extends State<BreathingPage> {
         _phase = 0;
         _cycle();
     }
-
+    //super simple size switching for now may look for animations later
     void _cycle() {
-        //rest of timer
+        if (!_running) return;
+        setState(() {
+            if (_phase == 0) {      //bigger
+                _size = 200;
+            } 
+            else if (_phase == 1) { //mid
+                _size = 200;
+            } 
+            else {                  //smaller
+                _size = 100;
+            }
+        });
+
+        final durations = [const Duration(seconds: 4), const Duration(seconds: 4), const Duration(seconds: 6)];
+        _timer?.cancel();
+        _timer = Timer(durations[_phase], () {
+            _phase = (_phase + 1) % 3;
+            _cycle();
+        });
     }
 
-    //research how to do animaiton linked to timer
-    
+    void _stop() {
+        setState(() => _running = false);
+        _timer?.cancel();
+    }
+
+    @override
+    void dispose() {
+        _timer?.cancel();
+        super.dispose();
+    }
+
 //breathing
 
 //animation pro
