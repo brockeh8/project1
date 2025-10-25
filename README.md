@@ -11,8 +11,10 @@ bonus credit for creativity and effort.(Eg., daily streak counter.)
 Milestone 1:
 • UI for home, affirmation, and journal pages.
 • Implement mood tracker with temporary storage.
+-- Hash for Milestone 1: 7a69c51c99919554ae64e660add5eceb7e0f3490
 
 Milestone 2:
 • Integrate local database for journal and mood tracking.
 • Add quote rotation or sound integration.
 • Final testing and optional animation/streak feature
+-- Hash for Milestone 2: 
