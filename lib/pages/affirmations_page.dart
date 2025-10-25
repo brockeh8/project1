@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +19,9 @@ class _AffirmationsPageState extends State<AffirmationsPage> {
     'I choose peace over worry.',
     'Small steps today create big change.',
     'I treat myself with kindness.',
+    'I am worthy of self-care.',
+    'I embrace the present moment.',
+    'I am in control of my thoughts.',
   ];
 
   int _index = 0;
@@ -43,6 +47,21 @@ class _AffirmationsPageState extends State<AffirmationsPage> {
     setState(() => _index = idx);
   }
 
+  Future<void> _shuffleNow() async {
+    final p = await SharedPreferences.getInstance();
+    final rng = Random(DateTime.now().microsecondsSinceEpoch);
+
+    int next = rng.nextInt(_quotes.length);
+    if (_quotes.length > 1) {
+      while (next == _index) {
+        next = rng.nextInt(_quotes.length);
+      }
+    }
+
+    await p.setInt(_kAffirmIdx, next); // persist new pick
+    setState(() => _index = next);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,10 +72,30 @@ class _AffirmationsPageState extends State<AffirmationsPage> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Text(
-              _quotes[_index],
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 300),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    _quotes[_index],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      onPressed: _shuffleNow,
+                      label: const Text('New Random Affirmation'),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
