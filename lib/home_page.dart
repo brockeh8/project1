@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
 
         return Scaffold(
             appBar: AppBar(
-                title: const Text('Welcome'),
+                title: const Text('Welcome to Mellowmind'),
                 centerTitle: true,
             ),
             body: Column(
