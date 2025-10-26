@@ -25,7 +25,6 @@ const MindfulnessApp({super.key});
       home :const HomePage(),
       routes: {
       //   //routes blank till update shooting for later today
-      //   '/': (_) => const HomePage(),
         '/breathing': (_) => const BreathingPage(),
         '/meditation': (_) => const MeditationPage(),
         '/mood': (_) => const MoodPage(),
