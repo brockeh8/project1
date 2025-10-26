@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class JournalPage extends StatefulWidget {
   const JournalPage({super.key});
+
   @override
   State<JournalPage> createState() => _JournalPageState();
 }
@@ -23,7 +24,12 @@ class _JournalPageState extends State<JournalPage> {
     final p = await SharedPreferences.getInstance();
     final raw = p.getString(_kJournal);
     if (raw != null) {
-      final list = (jsonDecode(raw) as List).cast<Map>().map((e) => e.map((k, v) => MapEntry(k.toString(), v.toString()))).toList();
+      final list = (jsonDecode(raw) as List)
+          .cast<Map>()
+          .map((e) => e.map(
+                (k, v) => MapEntry(k.toString(), v.toString()),
+              ))
+          .toList();
       setState(() => _entries = list);
     }
   }
@@ -77,7 +83,11 @@ class _JournalPageState extends State<JournalPage> {
             const SizedBox(height: 8),
             Align(
               alignment: Alignment.centerRight,
-              child: FilledButton.icon(onPressed: _add, icon: const Icon(Icons.add), label: const Text('Add Entry')),
+              child: FilledButton.icon(
+                onPressed: _add,
+                icon: const Icon(Icons.add),
+                label: const Text('Add Entry'),
+              ),
             ),
             const Divider(),
             Expanded(

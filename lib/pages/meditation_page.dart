@@ -1,20 +1,19 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart'; //audio for now
+import 'package:audioplayers/audioplayers.dart';
 
 class MeditationPage extends StatefulWidget {
   const MeditationPage({super.key});
+
   @override
   State<MeditationPage> createState() => _MeditationPageState();
 }
-//new audio class
+
 class _MeditationPageState extends State<MeditationPage> {
-  int _seconds = 60; 
+  int _seconds = 60;
   int _left = 60;
   Timer? _timer;
   bool get _running => _timer?.isActive ?? false;
-
- 
   final AudioPlayer _bgPlayer = AudioPlayer();
   double _volume = 0.6;
 
@@ -31,12 +30,8 @@ class _MeditationPageState extends State<MeditationPage> {
 
     try {
       await _bgPlayer.stop();
-      await _bgPlayer.play(
-        AssetSource('calm.mp3'), 
-      );
-    } catch (_) {
-      
-    }
+      await _bgPlayer.play(AssetSource('calm.mp3'));
+    } catch (_) {}
 
     _timer = Timer.periodic(const Duration(seconds: 1), (t) async {
       if (_left <= 1) {
@@ -81,8 +76,10 @@ class _MeditationPageState extends State<MeditationPage> {
             const Text('Set session length (minutes)'),
             Slider(
               value: (_seconds / 60).clamp(1, 30).toDouble(),
-              min: 1, max: 30, divisions: 29,
-              label: '${(_seconds/60).round()} min',
+              min: 1,
+              max: 30,
+              divisions: 29,
+              label: '${(_seconds / 60).round()} min',
               onChanged: _running ? null : (v) => setState(() => _seconds = (v.round() * 60)),
             ),
             const SizedBox(height: 8),

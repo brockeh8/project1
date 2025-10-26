@@ -11,7 +11,6 @@ class AffirmationsPage extends StatefulWidget {
 class _AffirmationsPageState extends State<AffirmationsPage> {
   static const _kAffirmIdx = 'affirmation_index';
   static const _kAffirmDate = 'affirmation_date';
-  
   final _quotes = const [
     'I inhale calm and exhale stress.',
     'I am present. I am grounded.',

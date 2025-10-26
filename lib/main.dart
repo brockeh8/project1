@@ -13,7 +13,7 @@ const MindfulnessApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final seed = const Color(0xFF6370D9); //tbd if this is for sure
+    final seed = const Color(0xFF6370D9); 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mindfulness App',
@@ -24,8 +24,6 @@ const MindfulnessApp({super.key});
       ),
       home :const HomePage(),
       routes: {
-      //   //routes blank till update shooting for later today
-      //   '/': (_) => const HomePage(),
         '/breathing': (_) => const BreathingPage(),
         '/meditation': (_) => const MeditationPage(),
         '/mood': (_) => const MoodPage(),
