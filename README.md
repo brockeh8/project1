@@ -17,4 +17,6 @@ Milestone 2:
 • Integrate local database for journal and mood tracking.
 • Add quote rotation or sound integration.
 • Final testing and optional animation/streak feature
--- Hash for Milestone 2: 
+-- Hash for Milestone 2: d92337d
+
+
