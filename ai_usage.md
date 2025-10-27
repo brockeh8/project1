@@ -61,7 +61,6 @@ _timer = Timer.periodic(const Duration(seconds: 1), (t) async {
         setState(() => _left -= 1);
       }
     });
-
     setState(() {});
 }
 
